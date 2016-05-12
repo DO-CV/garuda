@@ -1,0 +1,9 @@
+# For continuous integration.
+ipdb
+coverage
+nose
+six
+
+# Scientific packages.
+numpy
+ipython
