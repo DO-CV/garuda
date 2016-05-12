@@ -3,6 +3,7 @@ set -e
 
 source ./provision/ius.sh
 source ./provision/cuda.sh
+source ./provision/python_virtualenvs.sh
 
 
 function setup_dev_env()
@@ -26,5 +27,13 @@ function setup_dev_env()
 
 
 add_ius_rpm_package_repo
+
 setup_dev_env
 setup_cuda
+setup_python_virtualenvs
+
+
+source ${DOCV_PYENV_PROFILE_PATH}
+
+docv_pyenv_name=docv-pyenv
+setup_python_venv ${docv_pyenv_name}
