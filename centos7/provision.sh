@@ -33,7 +33,7 @@ setup_cuda
 setup_python_virtualenvs
 
 
+# Setup python virtual environment.
 source ${DOCV_PYENV_PROFILE_PATH}
-
 docv_pyenv_name=docv-pyenv
 setup_python_venv ${docv_pyenv_name}
