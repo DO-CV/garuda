@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 function add_ius_rpm_package_repo()
 {

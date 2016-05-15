@@ -31,8 +31,8 @@ function setup_systemwide_venvs_dir()
 
 function setup_python_venv()
 {
-  virtualenv=$1
-  python_version=$2
+  local virtualenv=$1
+  local python_version=$2
 
   echo "Setting up virtual env '${virtualenv}'..."
 
