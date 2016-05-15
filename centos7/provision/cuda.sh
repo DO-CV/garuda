@@ -1,6 +1,4 @@
 #!/bin/bash
-set -e
-
 
 PROVISION_DIR=$(pwd)/provision
 
@@ -16,10 +14,16 @@ function download_cuda()
 {
   if [ ! -f "${CUDA_INSTALLER_FILEPATH}" ]; then
     echo "Downloading CUDA installer file: `${CUDA_INSTALLER_FILE}`..."
-    curl -O ${CUDA_LOCAL_INSTALLER_URL} -o ${PROVISION_DIR}/${CUDA_INSTALLER_FILE}
+    curl ${CUDA_LOCAL_INSTALLER_URL} -o ${PROVISION_DIR}/${CUDA_INSTALLER_FILE}
   else
     echo "CUDA installer file: ${CUDA_INSTALLER_FILE} is already downloaded!"
   fi
+}
+
+function install_cuda_prerequisites()
+{
+  yum install -y \
+    kernel-devel-$(uname -r) kernel-headers-$(uname -r)
 }
 
 function install_cuda()
@@ -35,5 +39,6 @@ function install_cuda()
 function setup_cuda()
 {
   download_cuda
+  install_cuda_prerequisites
   install_cuda
 }

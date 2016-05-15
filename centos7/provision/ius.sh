@@ -1,6 +1,4 @@
 #!/bin/bash
-set -ex
-
 
 function add_ius_rpm_package_repo()
 {
@@ -12,6 +10,3 @@ function add_ius_rpm_package_repo()
   }
   rm ius.sh
 }
-
-
-add_ius_rpm_package_repo

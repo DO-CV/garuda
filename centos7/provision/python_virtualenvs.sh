@@ -1,6 +1,4 @@
 #!/bin/bash
-set -e
-
 
 DOCV_PYENV_PROFILE_PATH=/etc/profile.d/docv-pyenv.sh
 
