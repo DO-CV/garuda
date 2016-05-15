@@ -1,9 +1,10 @@
 #!/bin/bash
 set -ex
 
+
 function add_ius_rpm_package_repo()
 {
-  curl -o ius.sh setup.ius.io
+  curl https://setup.ius.io -o ius.sh
   sh ius.sh
   {
     yum clean all
@@ -11,3 +12,6 @@ function add_ius_rpm_package_repo()
   }
   rm ius.sh
 }
+
+
+add_ius_rpm_package_repo

@@ -1,6 +1,8 @@
 #!/bin/bash
-set -e
+set -ex
 
+
+cd sync
 source ./provision/ius.sh
 source ./provision/cuda.sh
 source ./provision/python_virtualenvs.sh
