@@ -29,6 +29,13 @@ We need to know the following commands to survive in the DevOps world.
 
 ### Vagrant
 
+* Install the correct version of the *VirtualBox Guest Additions*.
+* Sync vbox-guest-additions for virtual machine via vagrant.
+  ```
+  vagrant plugin install vbguest-plugin
+  ```
+  from: http://kvz.io/blog/2013/01/16/vagrant-tip-keep-virtualbox-guest-additions-in-sync/
+
 * Run the virtual machine
   ```
   vagrant up

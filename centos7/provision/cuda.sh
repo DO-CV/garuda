@@ -21,17 +21,22 @@ function download_cuda()
 
 function install_cuda_prerequisites()
 {
-  yum install -y kernel-devel-$(uname -r) kernel-headers-$(uname -r)
+  yum install -y kernel-devel kernel-headers
 }
 
 function install_cuda()
 {
-  if [ ! -f "/usr/local/cuda-${CUDA_VERSION}/bin/nvcc" ]; then
-    echo "Running CUDA installer..."
-    sh ${CUDA_INSTALLER_FILEPATH} --silent --driver --toolkit --samples --verbose
-  else
-    echo "CUDA is already installed!"
+  local cuda_install_options="--silent --toolkit --samples --verbose"
+  if [ -z ${VAGRANT_VM+x} ]; then
+    cuda_install_options+=" --driver"
   fi
+
+  #if [ ! -f "/usr/local/cuda-${CUDA_VERSION}/bin/nvcc" ]; then
+    echo "Running CUDA installer..."
+    sh ${CUDA_INSTALLER_FILEPATH} ${cuda_install_options}
+  #else
+  #  echo "CUDA is already installed!"
+  #fi
 }
 
 function setup_cuda()
