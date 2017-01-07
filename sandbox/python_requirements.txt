@@ -1,0 +1,18 @@
+# Useful stuff. 
+wheel
+ipdb
+lxml
+coverage
+nose
+six
+
+# Scientific packages.
+numpy
+scipy
+Cython
+scikit-image
+scikit-learn
+pandas
+matplotlib
+ipython
+Pillow
