@@ -2,7 +2,7 @@
 set -ex
 
 
-DOCV_VENV_WORKON_HOME=${HOME}/sandbox/third_party/virtualenvs
+DOCV_VENV_WORKON_HOME=${HOME}/sandbox/virtualenvs
 
 
 function install_virtualenvwrapper()
