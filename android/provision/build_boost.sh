@@ -16,7 +16,6 @@ ABI_NAME=$(adb shell getprop ro.product.cpu.abi)
 TOOLCHAIN=${PWD}/toolchain
 
 
-
 if [[ ! -f ${ARCHIVE_FILENAME} ]]; then
   echo "Downloading boost libraries: $ARCHIVE_URL"
   wget $ARCHIVE_URL
@@ -241,7 +240,8 @@ EOF
     toolset=clang-android \
     threading=multi \
     threadapi=pthread \
-    variant=release
+    variant=release \
+    install --prefix=$HOME/opt/android-$ABI_NAME
 
   echo "Done!"
 }
