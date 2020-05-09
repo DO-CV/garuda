@@ -11,11 +11,10 @@ QT_FULL_VERSION=${QT_MAJOR_MINOR_VERSION}.${QT_VERSION_PATCH}
 QT_ARCHIVE_FILE=qt-everywhere-src-${QT_FULL_VERSION}.tar.xz
 QT_ARCHIVE_URL=http://download.qt.io/official_releases/qt/${QT_MAJOR_MINOR_VERSION}/${QT_FULL_VERSION}/single/${QT_ARCHIVE_FILE}
 
-ANDROID_DEVICE_ABI=$(adb shell getprop ro.product.cpu.abi)
 ANDROID_SDK_ROOT=${HOME}/Android/Sdk
 ANDROID_NDK_ROOT=${HOME}/opt/android-ndk-r21b
 
-INSTALL_DIR=${HOME}/opt/android-armeabi-v7a
+INSTALL_DIR=${HOME}/opt/qt${QT_FULL_VERSION}-android
 
 if [ ! -f ${QT_ARCHIVE_FILE} ]; then
   wget ${QT_ARCHIVE_URL}
@@ -37,7 +36,6 @@ pushd ./qt-everywhere-src-${QT_FULL_VERSION}
     -nomake examples \
     -android-ndk ${ANDROID_NDK_ROOT} \
     -android-sdk ${ANDROID_SDK_ROOT} \
-    -android-abis ${ANDROID_DEVICE_ABI} \
     -no-warnings-are-errors \
     -opensource -confirm-license \
     -prefix ${INSTALL_DIR}
