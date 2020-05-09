@@ -1,7 +1,15 @@
 #!/bin/bash
 set -eux
 
-QT_VERSION=v5.14.2
+QT_VERSION_MAJOR=5
+QT_VERSION_MINOR=14
+QT_VERSION_PATCH=2
+
+QT_MAJOR_MINOR_VERSION=${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}
+QT_FULL_VERSION=${QT_MAJOR_MINOR_VERSION}.${QT_VERSION_PATCH}
+
+QT_ARCHIVE_FILE=qt-everywhere-src-${QT_FULL_VERSION}.tar.xz
+QT_ARCHIVE_URL=http://download.qt.io/official_releases/qt/${QT_MAJOR_MINOR_VERSION}/${QT_FULL_VERSION}/single/${QT_ARCHIVE_FILE}
 
 ANDROID_DEVICE_ABI=$(adb shell getprop ro.product.cpu.abi)
 ANDROID_SDK_ROOT=${HOME}/Android/Sdk
@@ -9,16 +17,16 @@ ANDROID_NDK_ROOT=${HOME}/opt/android-ndk-r21b
 
 INSTALL_DIR=${HOME}/opt/android-armeabi-v7a
 
-if [ ! -d qt5 ]; then
-  git clone git://code.qt.io/qt/qt5.git qt5
-  perl init-repository
+if [ ! -f ${QT_ARCHIVE_FILE} ]; then
+  wget ${QT_ARCHIVE_URL}
 fi
 
-pushd qt5
-{
-  git checkout ${QT_VERSION}
-  git submodule update --recursive
+if [ ! -d ./qt-everywhere-src-${QT_FULL_VERSION} ]; then
+  tar xvf ${QT_ARCHIVE_FILE}
+fi
 
+pushd ./qt-everywhere-src-${QT_FULL_VERSION}
+{
   export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
   export PATH=$PATH:$JAVA_HOME/bin
 
@@ -35,6 +43,6 @@ pushd qt5
     -prefix ${INSTALL_DIR}
 
   make -j$(nproc)
-  make install
+  make INSTALL_ROOT=${INSTALL_DIR} install
 }
 popd
