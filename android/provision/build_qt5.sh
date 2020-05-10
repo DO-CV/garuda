@@ -2,7 +2,7 @@
 set -eux
 
 QT_VERSION_MAJOR=5
-QT_VERSION_MINOR=14
+QT_VERSION_MINOR=13
 QT_VERSION_PATCH=2
 
 QT_MAJOR_MINOR_VERSION=${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}
@@ -14,7 +14,7 @@ QT_ARCHIVE_URL=http://download.qt.io/official_releases/qt/${QT_MAJOR_MINOR_VERSI
 ANDROID_SDK_ROOT=${HOME}/Android/Sdk
 ANDROID_NDK_ROOT=${HOME}/opt/android-ndk-r21b
 
-INSTALL_DIR=${HOME}/opt/qt${QT_FULL_VERSION}-android
+INSTALL_DIR=${HOME}/opt/Qt-${QT_FULL_VERSION}-android
 
 if [ ! -f ${QT_ARCHIVE_FILE} ]; then
   wget ${QT_ARCHIVE_URL}
