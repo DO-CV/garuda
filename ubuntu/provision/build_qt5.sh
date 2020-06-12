@@ -21,12 +21,16 @@ if [ ! -d ./qt-everywhere-src-${QT_FULL_VERSION} ]; then
   tar xvf ${QT_ARCHIVE_FILE}
 fi
 
+# Make sure all of these are installed.
+# sudo apt-get install '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev
+
 pushd ./qt-everywhere-src-${QT_FULL_VERSION}
 {
   ./configure \
     -nomake tests \
     -nomake examples \
     -ccache \
+    -xcb \
     -opensource -confirm-license \
     -prefix ${INSTALL_DIR}
 
